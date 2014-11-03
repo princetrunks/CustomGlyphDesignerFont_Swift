@@ -15,9 +15,7 @@ Again, very simple... add the import statements to the file exactly like you wou
 #import "SSBitmapFont.h"
 #import "SSBitmapFontLabelNode.h"
 
-
 That's it! That is all my PikiPop-Bridging-Header.h file has and now my entire Swift project can use SSBitmapFont and SSBitmapFontLabelNode objects
-
 
 Now, you are not out of the woods yet. You still need to create your SSBitmapFont object to then be used by SSBitmapFontLabelNodes.
 
@@ -28,7 +26,7 @@ Here's how you rewrite implementation of these objects in Swift:
 To create the SSBitmapFont object (remember to have your .skf file(s) and texture atlases imported into your project at this point) here's how I do it in PikiPop.  First I created a function that returns an SSBitmapFont object.  This is the swift version of how 71Squared did it in their demo file.
 
 
-class func bitmapFontForFile(filename:String) -> SSBitmapFont{
+        class func bitmapFontForFile(filename:String) -> SSBitmapFont{
 
 
         // Generate a path to the font file

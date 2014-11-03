@@ -3,7 +3,8 @@ CustomGlyphDesignerFont_Swift
 
 Swift SpriteKit Game Class With Custom GlyphDesigner Bitmap Fonts
 
-HOW TO USE GLYPH DESIGNER FONTS IN SWIFT... (from my full post found at http://blog.chucksanimeshrine.com/2014/10/how-to-add-glyphdesigner-custom-bitmap.html)
+HOW TO USE GLYPH DESIGNER FONTS IN SWIFT... 
+(from my full post found at http://blog.chucksanimeshrine.com/2014/10/how-to-add-glyphdesigner-custom-bitmap.html)
 
 At first, I thought about rewriting the entire SSBitMapFont and SSBitMapFontLabel classes in Swift... but unfortunately you only have access to their interface files (.h files) and not their (.m) implementation files; it's all packed into libSSBitmapFont.a since I'd imagine the implementation code (though probably still obtainable) is proprietary code.  
 
@@ -12,8 +13,8 @@ As of the date of this posting, 71squared has yet to make these classes in Swift
 How do you use it in a mostly Swift project?(Like my game PikiPop seen above) 
 Again, very simple... add the import statements to the file exactly like you would add them in an Objective-c project. ie:
 
-#import "SSBitmapFont.h"
-#import "SSBitmapFontLabelNode.h"
+    #import "SSBitmapFont.h"
+    #import "SSBitmapFontLabelNode.h"
 
 That's it! That is all my PikiPop-Bridging-Header.h file has and now my entire Swift project can use SSBitmapFont and SSBitmapFontLabelNode objects
 
@@ -21,7 +22,6 @@ Now, you are not out of the woods yet. You still need to create your SSBitmapFon
 
 
 Here's how you rewrite implementation of these objects in Swift:
-
 
 To create the SSBitmapFont object (remember to have your .skf file(s) and texture atlases imported into your project at this point) here's how I do it in PikiPop.  First I created a function that returns an SSBitmapFont object.  This is the swift version of how 71Squared did it in their demo file.
 
@@ -68,21 +68,20 @@ Next, create the SSBitmapFont object.  Here's how I did it for the "combo_text" 
 
 
 
-let comboBitMapFont:SSBitmapFont = bitmapFontForFile("combo_text")
+     let comboBitMapFont:SSBitmapFont = bitmapFontForFile("combo_text")
 
 
 Then I finally create the SSBitmapFontLabelNode that uses this font and add it to my HUD object (which is a child of my game's scene)
 
 
 
-let comboTextNum = comboBitMapFont_.nodeFromString("x\(comboCount)")
+    let comboTextNum = comboBitMapFont_.nodeFromString("x\(comboCount)")
 
 
-comboTextNum.position = CGPointMake(currentScene.frame.size.width * 0.47, currentScene.frame.size.height * 0.8)
+    comboTextNum.position = CGPointMake(currentScene.frame.size.width * 0.47, currentScene.frame.size.height * 0.8)
 
 
-self.addChild(comboTextNum)
+    self.addChild(comboTextNum)
 
 
-
-and there it is.  That's the "X3" you see in the photo up top.  The "Combo x" uses another font object and so does the "SCORE" text.  Also note that the bitmapFontForFile("combo_text") line will use either the .skf file or the .skf@2x file based on which resolution the player is using on their device.  So, there's no need to create separate SSBitmapFont objects for each resolution. - See more at: http://blog.chucksanimeshrine.com/2014/10/how-to-add-glyphdesigner-custom-bitmap.html#.VFcqP1PF8QS
+and there it is.  That's the "X3" you see in the photo up top.  The "Combo x" uses another font object and so does the "SCORE" text.  Also note that the bitmapFontForFile("combo_text") line will use either the .skf file or the .skf@2x file based on which resolution the player is using on their device.  So, there's no need to create separate SSBitmapFont objects for each resolution.
